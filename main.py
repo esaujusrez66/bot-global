@@ -1,3 +1,17 @@
+from flask import Flask
+from threading import Thread
+import os
+
+app_flask = Flask('')
+@app_flask.route('/')
+def home():
+    return "Bot Global Activo!"
+
+def run_flask():
+    port = int(os.environ.get("PORT", 10000))
+    app_flask.run(host='0.0.0.0', port=port)
+
+Thread(target=run_flask).start()
 import logging
 from telegram import Update, ReplyKeyboardMarkup, KeyboardButton
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes, ConversationHandler
